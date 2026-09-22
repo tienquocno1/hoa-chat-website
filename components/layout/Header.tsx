@@ -16,10 +16,12 @@ const navLinks = [
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const pathname = usePathname()
 
   const isHomePage = pathname === '/'
+  // On server/before mount, default to transparent for home page to avoid flash
   const isTransparent = isHomePage && !scrolled
 
   // Robust cross-browser scroll detection for mobile, tablet & desktop
@@ -34,6 +36,7 @@ export default function Header() {
   }, [])
 
   useEffect(() => {
+    setMounted(true)
     handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
     document.addEventListener('scroll', handleScroll, { passive: true })
@@ -56,6 +59,7 @@ export default function Header() {
   return (
     <>
       <header
+        suppressHydrationWarning
         className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-200 ${
           isTransparent && !isOpen
             ? 'bg-transparent'

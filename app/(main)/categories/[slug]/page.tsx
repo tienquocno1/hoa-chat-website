@@ -134,5 +134,6 @@ export default async function CategoryPage({ params }: PageProps) {
         )}
       </div>
     </div>
+    </>
   )
 }

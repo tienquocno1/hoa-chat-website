@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Smooth scroll */
+  html[data-scroll-behavior="smooth"] {
+    scroll-behavior: smooth;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply font-sans text-gray-800;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-brand-400 to-accent-500 bg-clip-text text-transparent;
+  }
+
+  /* Section containers */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Card hover effect */
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+
+  /* Primary button */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold
+           px-6 py-3 rounded-xl transition-all duration-200 active:scale-95 shadow-lg shadow-brand-600/20;
+  }
+
+  /* Accent button */
+  .btn-accent {
+    @apply inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold
+           px-6 py-3 rounded-xl transition-all duration-200 active:scale-95 shadow-lg shadow-accent-500/20;
+  }
+
+  /* Ghost button */
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 border-2 border-white/30 text-white font-semibold
+           px-6 py-3 rounded-xl transition-all duration-200 hover:bg-white/10 active:scale-95;
+  }
+
+  /* Section title */
+  .section-title {
+    @apply font-heading font-bold text-3xl sm:text-4xl text-brand-950;
+  }
+
+  /* Product card */
+  .product-card {
+    @apply bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden card-hover;
+  }
+
+  /* Category badge */
+  .category-badge {
+    @apply inline-block text-xs font-medium bg-brand-50 text-brand-700 px-2.5 py-1 rounded-full;
+  }
+}
+
+@layer utilities {
+  /* Custom scrollbar */
+  .scrollbar-thin::-webkit-scrollbar { width: 6px; }
+  .scrollbar-thin::-webkit-scrollbar-track { background: #f1f5f9; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 99px; }
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+}
+
+/* Floating contact animation */
+@keyframes bounce-subtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.float-btn {
+  animation: bounce-subtle 2.5s ease-in-out infinite;
+}
+
+.float-btn:nth-child(2) { animation-delay: 0.3s; }
+.float-btn:nth-child(3) { animation-delay: 0.6s; }
+
+/* =========================================
+   MOBILE TOUCH FIX - Critical for iOS/Android
+   ========================================= */
+/* Remove 300ms tap delay on all interactive elements */
+a, button, input, select, textarea, label, [role="button"] {
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Prevent pointer events from being blocked by overlay layers */
+.pointer-events-auto {
+  pointer-events: auto !important;
+}
